@@ -1,0 +1,14 @@
+[Unit]
+Description=MOA Read-only API
+After=network.target
+
+[Service]
+Type=simple
+Environment=MOA_READ_TOKEN=YOUR_MOA_READ_TOKEN
+Environment=MOA_READ_PORT=8091
+ExecStart=/usr/bin/python3 /root/moa_read_api.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

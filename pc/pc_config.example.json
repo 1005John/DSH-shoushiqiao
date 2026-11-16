@@ -1,0 +1,17 @@
+{
+  "filePort": 8094,
+  "agentPort": 8095,
+  "fileToken": "YOUR_PC_FILE_TOKEN",
+  "agentToken": "YOUR_PC_AGENT_TOKEN",
+  "bind": "0.0.0.0",
+  "root": "D:\\HuaweiMoveData\\Users\\USERNAME\\Desktop",
+  "roots": [
+    "D:\\HuaweiMoveData\\Users\\USERNAME\\Desktop"
+  ],
+  "exclude": [
+    "node_modules",
+    ".git",
+    "$RECYCLE.BIN",
+    "System Volume Information"
+  ]
+}

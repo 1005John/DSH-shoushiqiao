@@ -1,0 +1,28 @@
+# 密钥与本地配置
+pc/pc_config.json
+*.local.json
+secrets.json
+*.key
+*.pem
+
+# 运行时产物
+pc/index/
+pc/trash/
+pc/agent_state/
+*.log
+*.pid
+
+# 构建产物
+*.apk
+*.dex
+*.jar
+build/
+out/
+dist/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

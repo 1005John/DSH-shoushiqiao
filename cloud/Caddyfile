@@ -1,0 +1,45 @@
+{
+  auto_https disable_redirects
+  http_port 8081
+  servers {
+    protocols h1 h2
+  }
+}
+
+# 原有站点：DSH Web（basic auth），保持不变
+https://YOUR_VPS_IP {
+  tls internal
+  basicauth {
+    dsh $2a$14$wPBcpeqMcePgilCwBNHL6uNrFrdkiRgsEPQCGKun2uoBUmc257YN6
+  }
+  reverse_proxy 127.0.0.1:3080
+}
+
+# MOA 只读 API + PC 文件服务（域名入口，解决 Android 无法对 IP 发 SNI 的问题）
+https://39-106-60-159.sslip.io {
+  tls internal
+
+  handle_path /moa/* {
+    reverse_proxy 127.0.0.1:8091
+  }
+
+  # PC 文件服务：PC 用 ssh -R 18089 反向隧道暴露到 127.0.0.1:18089
+  # 鉴权由文件服务自身的 X-Token 负责
+  handle_path /pc/* {
+    reverse_proxy 127.0.0.1:18094
+  }
+
+  # PC Agent 任务服务：PC 用 ssh -R 18091 反向隧道暴露
+  # 手机把任务派给 PC 上的 dsh 执行
+  handle_path /agent/* {
+    reverse_proxy 127.0.0.1:18095 {
+      transport http {
+        read_timeout 900s
+      }
+    }
+  }
+
+  handle {
+    respond "MOA read API: /moa/health   PC files: /pc/health" 200
+  }
+}
