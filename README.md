@@ -32,6 +32,7 @@ DSH Go（[ccch1mneyyy/dsh-Go](https://github.com/ccch1mneyyy/dsh-Go)）很好用
 |---|---|---|
 | **Android 桥接 App** | `android/bridge/` | 手势、录音、无障碍操作、TTS、待办、同步 |
 | **PC 文件服务** | `pc/` | 让手机读写 PC 上的文件（局域网优先，公网兜底） |
+| **MOA 采集** | `pc/moa/` | 从加密数据库采集 IM 消息并推送云端（含补推工具） |
 | **云端只读转发** | `cloud/` | MOA 聊天记录的只读 API（VPS + Caddy） |
 
 ---
@@ -101,6 +102,7 @@ schtasks /Create /TN "DSH-PC-Watchdog" /TR "powershell -File D:\path\to\pc_watch
 - **第七节** 这一路踩过的坑（都是实机验证的）
 - **第十七节** Tasks.org 集成（第三方 API 的三条硬规则）
 - **第二十节** 熄屏 / 锁屏下的语音链路
+- **第二十一节** MOA 采集的两个致命缺陷（漏消息的根因）
 
 ---
 
